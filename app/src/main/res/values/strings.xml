@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Android Project</string>
+    <string name="rank_button">Rank</string>
+    <string name="setting_button">Setting</string>
+</resources>
