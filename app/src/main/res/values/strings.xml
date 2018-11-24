@@ -8,6 +8,14 @@
     <string name="score">You got %d point!</string>
     <string name="player_name">Player Name: </string>
     <string name="save_back_button">Save and back to menu</string>
-    <string name="about_text">Player need to tap the screen continuously to fly the superman and pass thought the gap between building. When user is successfully pass thought the gap between building, they will gain point, but if It will superman hit the building, the point will be deducted. After finish the game, player can save their record. User can see the ranking in the ranking page</string>
+    <string name="about_text">
+        The game is controlling superman to pass thought the gap between building in 30 second.
+        while superman pass thought more building, user can gain more point.
+        Player need to tap the screen continuously to fly the superman and pass thought the gap between building.
+        When user is successfully pass thought the gap between building, they will gain point,
+        but if superman hit the building, the point will be deducted.
+        After finish the game, player can save their record.
+        User can see the ranking in the ranking page
+    </string>
     <string name="back_button">Back</string>
 </resources>

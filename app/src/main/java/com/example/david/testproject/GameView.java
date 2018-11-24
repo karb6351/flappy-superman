@@ -31,7 +31,7 @@ public class GameView extends SurfaceView {
 
     public final static int CIRCLE_DELAY = 30;
     public static int VELOCITY = DEFAULT_VELOCITY;
-    public final static int GAP_HEIGHT = 350;
+    public final static int GAP_HEIGHT = 260;
     public final static int GAP_WIDTH = 500;
 
     public final static int MIN_Y_COOR = -400;
@@ -108,6 +108,7 @@ public class GameView extends SurfaceView {
 
         @Override
         public void run() {
+            killThread = false;
             while (timeLimit > 0) {
                 if (killThread){
                     break;
@@ -193,7 +194,7 @@ public class GameView extends SurfaceView {
         killThread = true;
 
         space = 0;
-        timeLimit = 10;
+        timeLimit = 30;
 
         timeLimitThread = new TimeLimitThread();
 
@@ -267,7 +268,7 @@ public class GameView extends SurfaceView {
                 Resources.getSystem().getDisplayMetrics().heightPixels / 2);
         bottomBuilding = ImageHelper.getResizedBitmap(BitmapFactory.decodeResource
                         (getResources(), Building.imageList[randomInt(0, 3)]), 250,
-                Resources.getSystem().getDisplayMetrics().heightPixels / 2);
+                (int) (Resources.getSystem().getDisplayMetrics().heightPixels / 1.8));
 
         buildings.add(new Building(topBuilding, bottomBuilding, Resources.getSystem().getDisplayMetrics().widthPixels + 250, randomInt(MIN_Y_COOR, MAX_Y_COOR), this.getContext()));
     }

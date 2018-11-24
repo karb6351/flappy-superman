@@ -60,10 +60,10 @@ public class Building {
         Rect isHitBottomBuilding = ImageHelper.collidePixel(supermanRect, bottomBuildingRect, supermanBitmap, bottomImage);
 
         if (isHitTopBuilding != null){
-            topImageY = -1000;
+            topImageY = -2000;
             return  topBuildingRect;
         }else if (isHitBottomBuilding != null){
-            bottomImageY = -1000;
+            bottomImageY = -2000;
             return bottomBuildingRect;
         }else {
             return null;
