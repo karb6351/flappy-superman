@@ -3,12 +3,17 @@ package com.example.david.testproject;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Rect;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable.Callback;
+import android.util.Log;
 
-public class CharacterSprite {
+import java.util.ArrayList;
+
+public class Superman {
     private double x;
     private double y;
     private double velocityX;
@@ -33,7 +38,7 @@ public class CharacterSprite {
         }
     };
 
-    public CharacterSprite(Callback callback, Context context, Activity activity){
+    public Superman(Callback callback, Context context, Activity activity){
         this.x = 100;
         this.y = 100;
 
@@ -57,9 +62,12 @@ public class CharacterSprite {
         this.lift = -28;
     }
 
-    synchronized public void move(float screenHeight){
+    synchronized public void move(float screenHeight, Rect building){
 
         activity.runOnUiThread(startFlyTask);
+
+        double saveX = x;
+        double saveY = y;
 
         x += velocityX;
         y += velocityY;
@@ -78,11 +86,37 @@ public class CharacterSprite {
             y = 0;
             velocityY = 0;
         }
+//        isCharaterOnOrBelowBuilding(building);
 
     }
 
+    public boolean isCharaterOnOrBelowBuilding(Rect building){
+        if (building != null) {
+            //determine it is a top building or bottom building
+            if (building.top > 0){
+                if (y < building.top ){
+                    y = building.top - drawable.getIntrinsicHeight() + 55.5;
+//                    velocityY = lift * 0.4;
+                    velocityY = 0;
+                    return true;
+                }
+
+            }else {
+                if (y < building.bottom && y + drawable.getIntrinsicHeight() > building.bottom){
+                    y = building.bottom - 55.5;
+                    velocityY = 0;
+                    return true;
+                }
+                return false;
+            }
+        }
+        return false;
+    }
+
+
+
+
     synchronized public void fly(){
-        activity.runOnUiThread(startFlyTask);
         velocityY += lift * 0.9;
     }
 
@@ -91,6 +125,11 @@ public class CharacterSprite {
         canvas.save();
         drawable.draw(canvas);
         canvas.restore();
+    }
+
+    public Bitmap getBitmap(){
+        Bitmap temp = BitmapFactory.decodeResource(activity.getApplicationContext().getResources(), R.drawable.superman1);
+        return temp;
     }
 
 
